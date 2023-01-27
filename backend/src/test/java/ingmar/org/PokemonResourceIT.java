@@ -3,6 +3,6 @@ package ingmar.org;
 import io.quarkus.test.junit.QuarkusIntegrationTest;
 
 @QuarkusIntegrationTest
-public class GreetingResourceIT extends GreetingResourceTest {
+public class PokemonResourceIT extends PokemonResourceTest {
     // Execute the same tests but in packaged mode.
 }

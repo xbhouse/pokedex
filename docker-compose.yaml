@@ -1,13 +1,16 @@
-version: '3'
+version: '3.9'
 
 services:
   quarkus:
-    build: ./backend
+    build: 
+      context: ./backend/src/main/docker
+      dockerfile: Dockerfile.jvm
     command: ["quarkus dev"]
     ports:
       - "8080:8080"
   frontend:
-    build: ./frontend
+    build: 
+      context: ./frontend
     command: ["npm", "run", "start:dev"]
     ports:
       - "3000:3000"

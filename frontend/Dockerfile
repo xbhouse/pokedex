@@ -1,5 +1,5 @@
 # WIP
-FROM registry.redhat.io/rhel8/nodejs-16:1-8
+FROM registry.access.redhat.com/ubi8/nodejs-16:1-82
 ENV HOME /app
 WORKDIR $HOME
 USER root
