@@ -1,4 +1,4 @@
-package ingmar.org;
+package pokemon.org;
 
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package ingmar.org;
+package pokemon.org;
 
 public class Pokemon {
   private String name;
