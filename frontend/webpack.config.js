@@ -5,7 +5,8 @@ const Dotenv = require('dotenv-webpack');
 module.exports = {
     mode: 'development',
     // where webpack will start bundling
-    entry: path.join(__dirname, "src", "index.js"),
+    // regenerator-runtime required to fix async/await errors
+    entry: ["regenerator-runtime/runtime.js", path.join(__dirname, "src", "index.js")],
     // output of bundled file and base path for all assets
     output: {
         path: path.resolve(__dirname, "dist"),
@@ -16,7 +17,7 @@ module.exports = {
       port: 3000,
       proxy: {
         '/api': {
-          target: 'http://127.0.0.1:8080',
+          target: 'http://0.0.0.0:8080',
           logLevel: 'debug' 
      }
       },

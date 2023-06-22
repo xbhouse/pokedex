@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pokedex
+  namespace: pokedex
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pokedex
+  template:
+    metadata:
+      labels:
+        app: pokedex
+    spec:
+      containers:
+        - name: pokedex-backend
+          image: quay.io/bhouse/quarkus/pokedex-jvm:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+        - name: pokedex-frontend
+          image: quay.io/bhouse/quarkus/pokedex-frontend:1.0.3
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 3000

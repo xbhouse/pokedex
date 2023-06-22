@@ -1,4 +1,6 @@
 # WIP
+# docker build -f Dockerfile -t quarkus/pokedex-frontend .
+# docker run -i --rm -p 3000:3000 quarkus/pokedex-frontend
 FROM registry.access.redhat.com/ubi8/nodejs-16:1-82
 ENV HOME /app
 WORKDIR $HOME
@@ -6,7 +8,7 @@ USER root
 RUN useradd -ms /bin/bash node \
   && chown -R node:node $HOME \
   && chgrp -R 0 $HOME 
-COPY package*.json ./
+COPY package.json ./
 RUN npm install \
   && mkdir node_modules/.cache \
   && chmod -R 775 node_modules/.cache

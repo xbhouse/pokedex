@@ -1,15 +1,11 @@
 package pokemon.org;
 
+import lombok.Data;
+
+@Data
 public class Pokemon {
+
+  private Integer id;
+
   private String name;
-
-  public void setName(String name)
-  {
-      this.name = name;
-  }
-
-  public String getName()
-  {
-      return this.name;
-  }
 }
