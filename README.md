@@ -11,6 +11,7 @@ to run: `npm run start:dev`
 ## deploy to openshift
 
 login to OCP with your credentials
+
 deploy with helm: `cd kubernetes/pokedex && helm install pokedex .`
 
 ## references
