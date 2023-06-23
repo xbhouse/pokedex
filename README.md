@@ -8,6 +8,11 @@ to run: `quarkus dev`
 
 to run: `npm run start:dev`
 
+## deploy to openshift
+
+login to OCP with your credentials
+deploy with helm: `cd kubernetes/pokedex && helm install pokedex .`
+
 ## references
 
 https://developers.redhat.com/articles/2022/02/03/build-rest-api-ground-quarkus-20
