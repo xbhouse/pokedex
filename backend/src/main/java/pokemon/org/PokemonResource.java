@@ -25,44 +25,41 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 @AllArgsConstructor
 public class PokemonResource {
 
-        private final PokemonService pokemonService;
+    private final PokemonService pokemonService;
 
-        @GET 
-        @APIResponse(
-            responseCode ="200",
-            description = "Get all pokemon",
-            content = @Content(
-                mediaType = MediaType.APPLICATION_JSON,
-                schema = @Schema(type = SchemaType.ARRAY, implementation = Pokemon.class)
-            )
+    @GET 
+    @APIResponse(
+        responseCode ="200",
+        description = "Get all pokemon",
+        content = @Content(
+            mediaType = MediaType.APPLICATION_JSON,
+            schema = @Schema(type = SchemaType.ARRAY, implementation = Pokemon.class)
         )
-        public Response get() {
-            return Response.ok(pokemonService.findAll()).build();
-        }
+    )
+    public Response get() {
+        return Response.ok(pokemonService.findAll()).build();
+    }   
 
-        @POST
-        @APIResponse(
-            responseCode = "201",
-            description = "Pokemon created",
-            content = @Content(
-                mediaType = MediaType.APPLICATION_JSON,
-                schema = @Schema(type = SchemaType.OBJECT, implementation = Pokemon.class)
-            )
+    @POST
+    @APIResponse(
+        responseCode = "201",
+        description = "Pokemon created",
+        content = @Content(
+            mediaType = MediaType.APPLICATION_JSON,
+            schema = @Schema(type = SchemaType.OBJECT, implementation = Pokemon.class)
         )
-        @APIResponse(
-            responseCode = "400",
-            description = "Invalid pokemon",
-            content = @Content(mediaType = MediaType.APPLICATION_JSON)
-        )
-        public Response post(Pokemon pokemon, @Context UriInfo uriInfo) {
-            pokemonService.create(pokemon);
-            URI uri = uriInfo.getAbsolutePathBuilder()
-                .path(Integer.toString(pokemon.getId()))
-                .build();
-            return Response.created(uri).entity(pokemon).build();
-        }
+    )
+    @APIResponse(
+        responseCode = "400",
+        description = "Invalid pokemon",
+        content = @Content(mediaType = MediaType.APPLICATION_JSON)
+    )
+    public Response post(Pokemon pokemon, @Context UriInfo uriInfo) {
+        pokemonService.create(pokemon);
+        URI uri = uriInfo.getAbsolutePathBuilder()
+            .path(Integer.toString(pokemon.getId()))
+            .build();
+        return Response.created(uri).entity(pokemon).build();
+    }
 
-
-
-    
 }

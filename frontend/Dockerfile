@@ -1,6 +1,5 @@
-# WIP
-# docker build -f Dockerfile -t quarkus/pokedex-frontend .
-# docker run -i --rm -p 3000:3000 quarkus/pokedex-frontend
+# docker build -f Dockerfile -t quay.io/bhouse/quarkus/pokedex-frontend:${tag} .
+# docker run -i --rm -p 3000:3000 quay.io/bhouse/quarkus/pokedex-frontend:${tag}
 FROM registry.access.redhat.com/ubi8/nodejs-16:1-82
 ENV HOME /app
 WORKDIR $HOME

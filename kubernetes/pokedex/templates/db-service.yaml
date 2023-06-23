@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pokedex-db
+  labels:
+    app: pokedex-db
+spec:
+  ports:
+    - port: {{ .Values.dbService.port }}
+      name: tcp
+  selector:
+    app: pokedex-db
