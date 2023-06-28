@@ -1,8 +1,10 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
-module.exports = {
+module.exports = env => {
+  return {
     mode: 'development',
     // where webpack will start bundling
     // regenerator-runtime required to fix async/await errors
@@ -17,9 +19,9 @@ module.exports = {
       port: 3000,
       proxy: {
         '/api': {
-          target: 'http://0.0.0.0:8080',
+          target: `${process.env.API_URL}:8080`,
           logLevel: 'debug' 
-     }
+        }
       },
       allowedHosts: ['all']
     },
@@ -52,6 +54,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.join(__dirname, "src", "index.html"),
         }),
-        new Dotenv()
+        new Dotenv(),
+        new webpack.DefinePlugin({
+          API_URL: JSON.stringify(process.env.API_URL)
+        })
     ],
+  }
 }

@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "pokedex.fullname" . }}
+  name: {{ include "pokedex.fullname" . }}-backend
   labels:
     {{- include "pokedex.labels" . | nindent 4 }}
 spec:
@@ -10,7 +10,7 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      app: pokedex
+      app: pokedex-backend
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,7 +18,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        app: pokedex
+        app: pokedex-backend
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -54,15 +54,6 @@ spec:
           env:
             - name: QUARKUS_CONFIG_LOCATIONS
               value: /deployments/app/application.properties
-        - name: {{ .Chart.Name }}-frontend
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.frontendImage.repository }}:{{ .Values.frontendImage.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.frontendImage.pullPolicy }}
-          ports:
-            - name: http
-              containerPort: 3000
-              protocol: TCP
       volumes:
         - name: app-properties
           configMap:

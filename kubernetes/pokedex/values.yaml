@@ -6,13 +6,13 @@ replicaCount: 1
 
 backendImage:
   repository: quay.io/bhouse/quarkus/pokedex-backend
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "1.0"
 
 frontendImage:
   repository: quay.io/bhouse/quarkus/pokedex-frontend
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "1.0"
 
