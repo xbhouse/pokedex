@@ -12,7 +12,13 @@ to run: `npm run start:dev`
 
 login to OCP with your credentials
 
-deploy with helm: `cd kubernetes/pokedex && helm install pokedex .`
+create project: `oc new-project pokedex`
+
+deploy resources with helm: `cd kubernetes/pokedex && helm install pokedex .`
+
+expose your backend and frontend services with routes: `oc expose svc/pokedex-backend && oc expose svc/pokedex-frontend --path=/app`
+
+
 
 ## references
 

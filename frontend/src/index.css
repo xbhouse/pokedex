@@ -48,4 +48,29 @@ code {
 .header-link {
   padding-top: var(--padding-above-sm);
 }
+
+.page-container {
+  margin: 0;
+}
+
+.form-container {
+  text-align: center;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.button-container {
+  padding-bottom: 5rem;
+}
+
+.pokemon-card {
+  margin-bottom: 2rem;
+}
+
+.pokemon-list {
+  margin-right: auto;
+  margin-left: auto;
+  width: 25rem;
+}
+
  

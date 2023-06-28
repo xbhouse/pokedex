@@ -1,13 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import {getPokemon, addPokemon} from '../services/Pokemon';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 
 const PokemonList = () => {
   const [pokemon, setPokemon] = useState([]);
-
-  // retrieve all entries on first load of the page
-  useEffect(() => {
-    refreshList(); 
-  }, [pokemon]);
+  const [count, setCount] = useState(0);
 
   // retrieve all entries from server 
   const refreshList = () => {
@@ -29,16 +28,39 @@ const PokemonList = () => {
     const result = addPokemon(data);
     console.log(result.then(data => console.log(data)));
     event.target.reset();
+    setCount((count) => count + 1);
+  }
+
+  // view updated pokedex on button click
+  const handleViewPokedex = (event) => {
+    event.preventDefault();
+
+    refreshList();
   }
 
   return (
-   <div>
-    <h1>Pokemon</h1>
-    <form onSubmit={handleSubmit}>
-      <input type="text" name="name"></input>
-      <button type="submit">Add Pokemon</button>
-    </form>
-    {pokemon.map(p => <div key={p.id}>{p.name}</div>)}
+   <div className="page-container">
+    <div className="form-container">
+      <form onSubmit={handleSubmit}>
+        <input type="text" name="name"></input>
+        <button type="submit">Add Pokemon</button>
+      </form>
+    </div>
+    <div className="text-center button-container">
+      <button type="submit" onClick={handleViewPokedex}>View updated Pokedex</button>
+    </div>
+    <div className="pokemon-list">
+      {pokemon.map(p => 
+        <div key={p.id}>
+          <Card className="pokemon-card">
+            <CardContent>
+              <Typography variant="h5" component="div">
+                Name: {p.name}
+              </Typography>
+            </CardContent>
+          </Card>
+        </div>)}
+      </div>
    </div>
   )
 }

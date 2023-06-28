@@ -19,8 +19,13 @@ module.exports = env => {
       port: 3000,
       proxy: {
         '/api': {
-          target: `${process.env.API_URL}:8080`,
-          logLevel: 'debug' 
+          target: `${process.env.API_URL}`,
+          changeOrigin: true,
+          logLevel: 'debug',
+          secure: false,
+          //pathRewrite: {
+          //  '^/api': ''
+          //} 
         }
       },
       allowedHosts: ['all']
