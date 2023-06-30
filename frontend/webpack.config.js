@@ -23,9 +23,6 @@ module.exports = env => {
           changeOrigin: true,
           logLevel: 'debug',
           secure: false,
-          //pathRewrite: {
-          //  '^/api': ''
-          //} 
         }
       },
       allowedHosts: ['all']

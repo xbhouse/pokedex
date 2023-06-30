@@ -2,13 +2,17 @@
 
 ## backend local development
 
-to run: `quarkus dev`
+to run: `cd backend && quarkus dev`
 
 ## frontend local development
 
-to run: `npm run start:dev`
+to run: `cd frontend && npm run start:dev`
 
 ## deploy to openshift
+
+rebuild and push backend and frontend images if updates were made (scripts provided in `/backend` and `/frontend` directories)
+
+change image names in deployment templates if necessary (`/kubernetes/pokedex/templates/backend-deployment` and `/kubernetes/pokedex/templates/frontend-deployment`)
 
 login to OCP with your credentials
 
@@ -18,6 +22,8 @@ deploy resources with helm: `cd kubernetes/pokedex && helm install pokedex .`
 
 expose your backend and frontend services with routes: `oc expose svc/pokedex-backend && oc expose svc/pokedex-frontend --path=/app`
 
+view the app by entering the hostname of the frontend route in your browser: `http://$(oc get route pokedex-frontend \
+-o jsonpath='{.spec.host}')`
 
 
 ## references

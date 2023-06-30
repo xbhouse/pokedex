@@ -1,17 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {getPokemon, addPokemon} from '../services/Pokemon';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
+import PokemonCard from './PokemonCard';
 
-const PokemonList = () => {
-  const [pokemon, setPokemon] = useState([]);
+const PokemonForm = () => {
+  const [pokemon, setPokemon] = useState({});
   const [count, setCount] = useState(0);
 
   // retrieve all entries from server 
   const refreshList = () => {
     getPokemon().then(pokemonList => {
       if(pokemonList.status === 200) {
+        console.log(pokemonList.data)
         setPokemon(pokemonList.data);
       }
     })
@@ -24,7 +23,7 @@ const PokemonList = () => {
     const data = Array.from(event.target.elements)
       .filter((input) => input.name)
       .reduce((obj, input) => Object.assign(obj, { [input.name]: input.value }), {});
-    
+
     const result = addPokemon(data);
     console.log(result.then(data => console.log(data)));
     event.target.reset();
@@ -34,7 +33,6 @@ const PokemonList = () => {
   // view updated pokedex on button click
   const handleViewPokedex = (event) => {
     event.preventDefault();
-
     refreshList();
   }
 
@@ -42,7 +40,9 @@ const PokemonList = () => {
    <div className="page-container">
     <div className="form-container">
       <form onSubmit={handleSubmit}>
-        <input type="text" name="name"></input>
+        <input className="form-input" type="text" name="name" placeholder="Name"></input>
+        <input className="form-input" type="text" name="level" placeholder="Level"></input>
+        <input className="form-input" type="text" name="pokemonType" placeholder="Type"></input>
         <button type="submit">Add Pokemon</button>
       </form>
     </div>
@@ -50,19 +50,10 @@ const PokemonList = () => {
       <button type="submit" onClick={handleViewPokedex}>View updated Pokedex</button>
     </div>
     <div className="pokemon-list">
-      {pokemon.map(p => 
-        <div key={p.id}>
-          <Card className="pokemon-card">
-            <CardContent>
-              <Typography variant="h5" component="div">
-                Name: {p.name}
-              </Typography>
-            </CardContent>
-          </Card>
-        </div>)}
+      <PokemonCard pokemon={pokemon}/>
       </div>
    </div>
   )
 }
 
-export default PokemonList;
+export default PokemonForm;

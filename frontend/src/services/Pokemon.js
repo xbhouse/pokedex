@@ -3,10 +3,9 @@ import "regenerator-runtime/runtime";
 
 // retrieve all pokemon 
 export const getPokemon = () => {
-  console.log(process.env.API_URL)
-  //return axios.get('/api/pokemon')
-  return axios.get(`${process.env.API_URL}/api/pokemon`)
+  return axios.get(`${API_URL}/api/pokemon`)
   .then(res => {
+    console.log(res);
     return res;
   })
   .catch((error) => {
@@ -16,9 +15,7 @@ export const getPokemon = () => {
 
 // submit new pokemon 
 export const addPokemon = async (pokemon) => {
-  //return await axios.post('/api/pokemon', {
-  return await axios.post(`${process.env.API_URL}/api/pokemon`, {
-    name: pokemon.name,
+  return await axios.post(`${API_URL}/api/pokemon`, JSON.stringify(pokemon), {
     headers: {
       'Content-Type': 'application/json'
     }

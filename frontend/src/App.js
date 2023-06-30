@@ -1,12 +1,12 @@
 import React from 'react';
-import {Header, PokemonList} from './components';
+import {Header, PokemonForm} from './components';
 import './index.css';
 
 const App = () => {
   return (
     <div className="App">
       {<Header/>}
-      {<PokemonList/>}
+      {<PokemonForm/>}
     </div>
   )
 }
