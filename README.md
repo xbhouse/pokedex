@@ -20,7 +20,7 @@ to run: `cd frontend && npm run start:dev`
 
 * deploy resources with helm: `cd kubernetes/pokedex && helm install pokedex .`
 
-* expose your frontend service with a route: `oc expose svc/pokedex-frontend --path=/app`
+* expose your frontend and backend services with routes: `oc expose svc/pokedex-frontend --path=/app && oc expose svc/pokedex-backend`
 
 * view the app by entering the hostname of the frontend route in your browser: `http://$(oc get route pokedex-frontend \
 -o jsonpath='{.spec.host}')`
@@ -38,6 +38,8 @@ to run: `cd frontend && npm run start:dev`
 
 * change `serviceMesh.enabled` to `true` in `kubernetes/pokedex/values.yaml` to enable sidecar injection
 
+* remove the `pokedex-backend` route, you don't need this anymore
+
 
 ## references
 
@@ -46,3 +48,6 @@ https://developers.redhat.com/articles/2022/02/03/build-rest-api-ground-quarkus-
 https://quarkus.io/guides/hibernate-orm-panache#setting-up-and-configuring-hibernate-orm-with-panache
 
 https://github.com/redhat-developer-demos/quarkus-reactjs-postit-app/tree/master
+
+https://docs.openshift.com/container-platform/4.12/service_mesh/v2x/preparing-ossm-installation.html
+
