@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography';
 
 const PokemonCard = (props) => {
 
-
   return (
     <React.Fragment>
       {Object.keys(props.pokemon).map((p, i) => 

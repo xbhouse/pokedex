@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: pokedex-virtual-service
+  namespace: pokedex
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - pokedex-gateway ###############################################
+  http:                       # This Virtual Service listens for requests
+  - match:                    # coming in on this Gateway, pokedex-gateway
+    - uri:                    ###############################################
+        exact: /api/pokemon     ###############################################
+    route:                      # Any root request, for example, a request coming from:
+    - destination:              # http://istio-ingressgateway-istio-system.apps.mydomain.com/
+        host: pokedex-backend   # will be forwarded to the Kubernetes service named orders at port 8080
+        port:                   ###############################################
+          number: 8080

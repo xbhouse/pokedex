@@ -17,6 +17,8 @@ spec:
       labels:
         name: pokedex-db
         app: pokedex-db
+      annotations:
+        sidecar.istio.io/inject: 'true'
     spec:
       containers:
         - env:

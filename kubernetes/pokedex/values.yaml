@@ -95,3 +95,6 @@ tolerations: []
 
 affinity: {}
 
+serviceMesh:
+  enabled: true
+

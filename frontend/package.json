@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "API_URL=http://pokedex-backend-pokedex.apps.cluster-4slf4.4slf4.sandbox2957.opentlc.com webpack-dev-server",
+    "start": "API_URL=http://istio-ingressgateway-istio-system.apps.cluster-lps2l.lps2l.sandbox2840.opentlc.com webpack-dev-server",
     "start:dev": "API_URL=http://localhost:8080 webpack-dev-server",
     "build": "webpack build",
     "test": "jest"

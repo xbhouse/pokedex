@@ -13,10 +13,9 @@ spec:
       app: pokedex-backend
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
       annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+        {{- if .Values.serviceMesh.enabled }}
+        sidecar.istio.io/inject: 'true'
       labels:
         app: pokedex-backend
     spec:
