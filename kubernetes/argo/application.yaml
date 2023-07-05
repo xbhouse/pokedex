@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pokedex
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: pokedex
+    server: 'https://kubernetes.default.svc'
+  project: default
+  source:
+    path: kubernetes/argo/app
+    repoURL: 'https://github.com/xbhouse/pokedex.git'
+    targetRevision: HEAD
