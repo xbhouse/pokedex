@@ -1,0 +1,11 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: properties
+data:
+  application.properties: |
+    # database configuration
+    quarkus.datasource.db-kind=postgresql
+    quarkus.datasource.username=user
+    quarkus.datasource.password=password
+    quarkus.datasource.jdbc.url=jdbc:postgresql://pokedex-db:5432/pokedex

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pokedex-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pokedex-backend
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: 'true'
+      labels:
+        app: pokedex-backend
+    spec:
+      containers:
+        - name: pokedex-backend
+          image: "quay.io/bhouse/quarkus/pokedex-backend:1.0"
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          volumeMounts:
+            - name: app-properties
+              mountPath: /deployments/app/application.properties
+              subPath: application.properties
+          env:
+            - name: QUARKUS_CONFIG_LOCATIONS
+              value: /deployments/app/application.properties
+      volumes:
+        - name: app-properties
+          configMap:
+            name: properties
+            defaultMode: 420
