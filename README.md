@@ -51,3 +51,7 @@ https://github.com/redhat-developer-demos/quarkus-reactjs-postit-app/tree/master
 
 https://docs.openshift.com/container-platform/4.12/service_mesh/v2x/preparing-ossm-installation.html
 
+https://docs.openshift.com/container-platform/4.12/cicd/pipelines/creating-applications-with-cicd-pipelines.html#running-a-pipeline_creating-applications-with-cicd-pipelines
+
+https://tekton.dev/docs/pipelines/
+

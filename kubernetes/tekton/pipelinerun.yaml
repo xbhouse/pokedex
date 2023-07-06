@@ -1,0 +1,34 @@
+
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: clone-build-run-
+spec:
+  pipelineRef:
+    name: clone-build
+  taskRunSpecs:
+  - pipelineTaskName: fetch-source
+    taskServiceAccountName: clone-bot
+  - pipelineTaskName: build-image
+    taskServiceAccountName: pipeline
+  workspaces:
+  - name: shared-data
+    volumeClaimTemplate:
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+  - name: docker-credentials
+    secret:
+      secretName: quay-creds
+  params:
+  - name: repo-url
+    value: https://github.com/xbhouse/pokedex.git
+  - name: IMAGE
+    value: quay.io/bhouse/quarkus/pokedex-backend:1.1
+  - name: CONTEXT
+    value: ./backend
+  - name: DOCKERFILE
+    value: ./src/main/docker/Dockerfile.jvm
