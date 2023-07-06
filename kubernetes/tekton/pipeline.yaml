@@ -1,10 +1,10 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: clone-build
+  name: clone-build-push
 spec: 
   description: |
-    This pipeline clones a git repo
+    This pipeline clones a git repo, builds the backend Java app, builds the backend image, and pushes that image to a Quay repo
   params:
   - name: repo-url
     type: string

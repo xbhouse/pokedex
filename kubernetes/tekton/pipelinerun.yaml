@@ -2,10 +2,10 @@
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
-  generateName: clone-build-run-
+  generateName: clone-build-push-run-
 spec:
   pipelineRef:
-    name: clone-build
+    name: clone-build-push
   taskRunSpecs:
   - pipelineTaskName: fetch-source
     taskServiceAccountName: clone-bot
