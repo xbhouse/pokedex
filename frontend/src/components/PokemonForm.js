@@ -1,19 +1,17 @@
 import React, {useState} from 'react';
-import {getPokemon, addPokemon} from '../services/Pokemon';
+import {usePokemon, postPokemon} from '../services/Pokemon';
 import PokemonCard from './PokemonCard';
 
 const PokemonForm = () => {
   const [pokemon, setPokemon] = useState({});
   const [count, setCount] = useState(0);
+  const {status, data, error} = usePokemon();
 
   // retrieve all entries from server 
   const refreshList = () => {
-    getPokemon().then(pokemonList => {
-      if(pokemonList.status === 200) {
-        console.log(pokemonList.data)
-        setPokemon(pokemonList.data);
-      }
-    })
+    if(data) {
+      setPokemon(data);
+    }
   }
 
   // add a new entry
@@ -24,7 +22,7 @@ const PokemonForm = () => {
       .filter((input) => input.name)
       .reduce((obj, input) => Object.assign(obj, { [input.name]: input.value }), {});
 
-    const result = addPokemon(data);
+    const result = postPokemon(data);
     console.log(result.then(data => console.log(data)));
     event.target.reset();
     setCount((count) => count + 1);
