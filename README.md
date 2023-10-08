@@ -12,11 +12,11 @@ to run: `cd frontend && npm run start:dev`
 
 to build and run containers for backend, database, and frontend:
 
-`cd backend && ./mvwn package`
+`cd backend && ./mvnw package`
 
 `cd .. && docker compose up`
 
-app will be accessible at localhost:3000. you will need to update the start script to `npm run start:dev` in the frontend Dockerfile if testing locally.
+app will be accessible at localhost:3000. you will likely need to update both the start script to `npm run start:dev` in the frontend Dockerfile and the db connection string in the `application.properties`.
 
 ## deploy to openshift
 
