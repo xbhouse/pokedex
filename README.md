@@ -13,6 +13,7 @@ to run: `cd frontend && npm run start:dev`
 to build and run containers for backend and frontend:
 
 `cd backend && ./mvwn package`
+
 `cd .. && docker compose up`
 
 app will be accessible at localhost:3000. you will need to update the start script to `npm run start:dev` in the frontend Dockerfile if testing locally.
