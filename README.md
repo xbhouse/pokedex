@@ -8,6 +8,15 @@ to run: `cd backend && quarkus dev`
 
 to run: `cd frontend && npm run start:dev`
 
+## containerized app local development
+
+to build and run containers for backend and frontend:
+
+`cd backend && ./mvwn package`
+`cd .. && docker compose up`
+
+app will be accessible at localhost:3000. you will need to update the start script to `npm run start:dev` in the frontend Dockerfile if testing locally.
+
 ## deploy to openshift
 
 * rebuild and push backend and frontend images if updates were made (scripts provided in `/backend` and `/frontend` directories)
