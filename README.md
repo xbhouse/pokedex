@@ -10,7 +10,7 @@ to run: `cd frontend && npm run start:dev`
 
 ## containerized app local development
 
-to build and run containers for backend and frontend:
+to build and run containers for backend, database, and frontend:
 
 `cd backend && ./mvwn package`
 

@@ -6,6 +6,20 @@ services:
     restart: always
     networks:
       - react-quarkus
+  postgres:
+    image: postgres:10.5
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    ports:
+      - '5438:5432'
+    volumes: 
+      - postgres-data:/var/lib/postgresql/data
   frontend:
     build: 
       context: frontend
@@ -19,3 +33,5 @@ services:
       - 3000
 networks:
   react-quarkus: {}
+volumes:
+  postgres-data: {}
