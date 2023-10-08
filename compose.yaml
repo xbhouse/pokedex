@@ -1,0 +1,21 @@
+services:
+  backend:
+    build: 
+      context: backend
+      dockerfile: src/main/docker/Dockerfile.jvm
+    restart: always
+    networks:
+      - react-quarkus
+  frontend:
+    build: 
+      context: frontend
+    ports:
+      - 3000:3000
+    networks:
+      - react-quarkus
+    depends_on:
+      - backend
+    expose:
+      - 3000
+networks:
+  react-quarkus: {}
